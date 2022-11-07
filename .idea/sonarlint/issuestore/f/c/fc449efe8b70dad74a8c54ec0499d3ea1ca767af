@@ -1,0 +1,9 @@
+
+t
+java:S1450!"^Remove the "categorySpinner" field and declare it as a local variable in the relevant methods.(É¿«©
+œ
+java:S1186N"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×åó«øÿÿÿÿ
+G
+java:S1602g",Remove useless curly braces around statement(ìžÑÔÿÿÿÿÿ
+œ
+java:S1186v"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¹Æº×þÿÿÿÿ
