@@ -29,6 +29,7 @@ import java.util.List;
 public class TaskListFragment extends Fragment {
     private RecyclerView recyclerView;
     public static final String KEY_EXTRA_TASK_ID = "KEY_EXTRA_TASK_ID";
+    public static final String KEY_SUBTITLE_VISIBLE = "false";
     private TaskAdapter adapter;
     private boolean subtitleVisible;
 
@@ -69,6 +70,16 @@ public class TaskListFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
+        if(savedInstanceState != null){
+            subtitleVisible = savedInstanceState.getBoolean(KEY_SUBTITLE_VISIBLE);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(KEY_SUBTITLE_VISIBLE, subtitleVisible);
     }
 
     @Override
@@ -186,25 +197,22 @@ public class TaskListFragment extends Fragment {
             Task task = tasks.get(position);
             holder.bind(task);
 
+            TextView nameTextView = holder.getNameTextView();
+
             CheckBox checkBox = holder.getCheckBox();
             checkBox.setChecked(tasks.get(position).isDone());
             checkBox.setOnCheckedChangeListener((buttonView, isChecked)->{
                 tasks.get(holder.getBindingAdapterPosition()).setDone(isChecked);
-            });
 
-            TextView nameTextView = holder.getNameTextView();
-
-            checkBox.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v){
-                    if(checkBox.isChecked()){
-                        if(!nameTextView.getPaint().isStrikeThruText()) {
-                            nameTextView.setPaintFlags(nameTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                        }
+                if(isChecked){
+                    if(!nameTextView.getPaint().isStrikeThruText()){
+                        nameTextView.setPaintFlags(nameTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                     }
-                    else{
-                        nameTextView.setPaintFlags(nameTextView.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
-                    }
+                    updateSubtitle();
+                }
+                else{
+                    nameTextView.setPaintFlags(nameTextView.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+                    updateSubtitle();
                 }
             });
         }

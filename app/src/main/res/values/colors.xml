@@ -8,8 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="toolBarColor">#4fdd01</color>
-    <color name="colorPrimaryRed">#c62828</color>
-    <color name="colorLightRed">#f44336</color>
+    <color name="menuBarColor">#2e7d32</color>
+    <color name="statusBarColor">#005005</color>
+    <color name="menuTextColor">#fff</color>
+    <color name="appBackgroundColor">#F8F8F8</color>
+    <color name="lightGreen">#60ad5e</color>
+    <color name="colorLightGreen">#1faa00</color>
     <color name="colorDarkBlack">#263238</color>
 </resources>

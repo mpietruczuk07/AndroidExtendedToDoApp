@@ -60,12 +60,13 @@ public class TaskFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_task, container, false);
         if(container != null){
             EditText nameField = view.findViewById(R.id.task_name);
+            nameField.setText(task.getName());
 
             if(nameField != null){
                 nameField.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                        task.getName();
+
                     }
 
                     @Override
@@ -87,6 +88,7 @@ public class TaskFragment extends Fragment {
                 calendar.set(Calendar.MONTH, month);
                 calendar.set(Calendar.DAY_OF_MONTH, day);
                 setupDateFieldValue(calendar.getTime());
+                task.setDate(calendar.getTime());
             };
 
             dateField.setOnClickListener(view1 ->
@@ -96,7 +98,6 @@ public class TaskFragment extends Fragment {
                             .show());
             setupDateFieldValue(task.getDate());
 
-            //Dopisać przekraslanie tekstu!
             CheckBox doneCheckBox = view.findViewById(R.id.task_done);
             if(doneCheckBox != null){
                 doneCheckBox.setChecked(task.isDone());
