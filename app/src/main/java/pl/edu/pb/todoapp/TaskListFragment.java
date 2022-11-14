@@ -160,6 +160,15 @@ public class TaskListFragment extends Fragment {
             else{
                 iconImageView.setImageResource(R.drawable.ic_studies);
             }
+
+            if(checkBox.isChecked()){
+                if(!nameTextView.getPaint().isStrikeThruText()){
+                    nameTextView.setPaintFlags(nameTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                }
+            }
+            else{
+                nameTextView.setPaintFlags(nameTextView.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);
+            }
         }
 
         @Override
